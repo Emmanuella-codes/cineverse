@@ -11,7 +11,6 @@ import { useParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
-const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 const DetailsCmp = dynamic(() => import("@/components/DetailsCmp"));
 const CastCmp = dynamic(() => import("@/components/CastCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
@@ -72,37 +71,26 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     return () => clearTimeout(timeout);
   }, [getMediaDetails, id, type]);
 
-  return (
-    <Container
-      bg={"#212121"}
-      maxW={""}
-      centerContent
-      color="#fff"
-      overflow={"hidden"}
-    >
-      <SearchCmp />
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Box mt={7} w={{ base: "93%", md: "85%" }}>
-            {/* Pass the mediaResult to DetailsCmp */}
-            {mediaResult && castDetails && (
-              <Box>
-                <DetailsCmp
-                  movieDetails={type === "movie" ? mediaResult : movieDetails}
-                  seriesDetails={type === "tv" ? mediaResult : seriesDetails}
-                  productionCrew={crewDetails}
-                  playMovie={routeToWatch}
-                />
-                <CastCmp castResult={castDetails} />
-              </Box>
-            )}
+  return loading ? (
+    <Loader />
+  ) : (
+    <>
+      <Box mt={7} w={{ base: "93%", md: "85%" }}>
+        {/* Pass the mediaResult to DetailsCmp */}
+        {mediaResult && castDetails && (
+          <Box>
+            <DetailsCmp
+              movieDetails={type === "movie" ? mediaResult : movieDetails}
+              seriesDetails={type === "tv" ? mediaResult : seriesDetails}
+              productionCrew={crewDetails}
+              playMovie={routeToWatch}
+            />
+            <CastCmp castResult={castDetails} />
           </Box>
-          <FooterCmp />
-        </>
-      )}
-    </Container>
+        )}
+      </Box>
+      <FooterCmp />
+    </>
   );
 };
 

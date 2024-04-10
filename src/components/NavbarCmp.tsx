@@ -91,9 +91,7 @@ export default function NavbarCmp() {
                   fontSize={"1.4rem"}
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Account</MenuItem>
-                <MenuItem>Settings</MenuItem>
+              <MenuList bgColor={""}>
                 <MenuDivider />
                 {session && session.user && (
                   <MenuItem onClick={() => signOut}>Sign Out</MenuItem>
