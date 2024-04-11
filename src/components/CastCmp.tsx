@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, useMediaQuery } from "@chakra-ui/react";
 import { MovieCast } from "../../typings";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const CastCmp = ({ castResult }: Props) => {
+  const [isLessThan386] = useMediaQuery("(max-width: 386px)");
   const slicedCast = castResult.slice(0, 6);
   const router = useRouter();
   const params = useParams();
@@ -33,12 +34,13 @@ const CastCmp = ({ castResult }: Props) => {
         justifyContent={"space-between"}
         alignItems="center"
         w={"full"}
+        gap={3}
       >
         {castResult &&
           slicedCast.map((cast, idx) => (
             <Box
               key={idx}
-              maxW={{ base: "48%", md: "35%" }}
+              maxW={{ base: "46%", md: "30%", lg: "15%" }}
               borderWidth="1px"
               rounded="lg"
               shadow="lg"
@@ -57,7 +59,7 @@ const CastCmp = ({ castResult }: Props) => {
                 />
               ) : (
                 <Box
-                  w={{ base: 150, md: 200 }}
+                  w={{ base: 150, lg: 200 }}
                   height={{ base: 240, md: 300 }}
                   style={{
                     borderRadius: "5.2px",
@@ -68,27 +70,24 @@ const CastCmp = ({ castResult }: Props) => {
                   NO IMAGE
                 </Box>
               )}
-              <Box p={2} w={{ base: 150, md: 200 }} h={{ base: 137, md: 115 }}>
-                <Text
-                  fontWeight={"bold"}
-                  fontSize={{ base: "13px", md: "16px" }}
-                >
+              <Box
+                p={2}
+                w={isLessThan386 ? 146 : !isLessThan386 ? 150 : { lg: 200 }}
+                h={{ base: 137, md: 115 }}
+              >
+                <Text fontWeight={"bold"} fontSize={"13px"}>
                   {cast.name}
                 </Text>
-                <Text
-                  fontSize={{ base: "13px", md: "16px" }}
-                  noOfLines={1}
-                  w={["121px", "100%"]}
-                >
+                <Text fontSize={"13px"} noOfLines={1} w={["121px", "100%"]}>
                   {cast.character}
                 </Text>
                 {cast.roles && cast.roles.length > 0 && (
-                  <Box w={["121px", "100%"]}>
-                    <Text fontSize={{ base: "13px", md: "16px" }} noOfLines={1}>
+                  <Box w={"121px"}>
+                    <Text fontSize={"13px"} noOfLines={1}>
                       {cast.roles[0].character}
                     </Text>
                     <Text
-                      fontSize={{ base: "13px", md: "16px" }}
+                      fontSize={"13px"}
                     >{`${cast.roles[0].episode_count} Episodes`}</Text>
                   </Box>
                 )}

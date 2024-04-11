@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@chakra-ui/react";
+import { Box, Skeleton, useMediaQuery } from "@chakra-ui/react";
 import { Movie, SeriesDetails } from "../../typings";
 import { Pagination, Navigation, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 
 interface Props {
   movies?: Movie[];
@@ -73,29 +74,33 @@ const MovieRow = ({ movies, series }: Props) => {
             <SwiperSlide
               key={`movie-${movie.id}-${idx}`}
               className={style.swiperSlide}
-              style={{
-                backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                height: "44vh",
-                width: "13vw",
-              }}
               onClick={() => handleClick(movie)}
-            />
+            >
+              <Box w="100%">
+                <Image
+                  src={`${baseUrl}${movie?.poster_path}`}
+                  alt={"movie poster"}
+                  height={500}
+                  width={500}
+                />
+              </Box>
+            </SwiperSlide>
           ))}
           {series?.map((seriesItem, idx) => (
             <SwiperSlide
               key={`series-${seriesItem.id}-${idx}`}
               className={style.swiperSlide}
-              style={{
-                backgroundImage: `url(${baseUrl}${seriesItem?.poster_path})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                height: "44vh",
-                width: "13vw",
-              }}
               onClick={() => handleClick(seriesItem)}
-            />
+            >
+              <Box w="100%">
+                <Image
+                  src={`${baseUrl}${seriesItem?.poster_path}`}
+                  alt={"movie poster"}
+                  height={500}
+                  width={500}
+                />
+              </Box>
+            </SwiperSlide>
           ))}
         </Box>
       </Swiper>

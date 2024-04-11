@@ -89,20 +89,14 @@ const DetailsCmp = ({
               </UnorderedList>
               <Text>|</Text>
               <Box display={{ base: "none", md: "block" }}>
-                <Text>
+                <Text fontSize={{ base: "14px", lg: "16px" }}>
                   {movieDetails?.runtime
                     ? movieRuntime(movieDetails.runtime)
                     : "N/A"}
                 </Text>
               </Box>
             </HStack>
-            <Box display={{ md: "none" }}>
-              <Text>
-                {movieDetails?.runtime
-                  ? movieRuntime(movieDetails.runtime)
-                  : "N/A"}
-              </Text>
-            </Box>
+
             <Text
               fontSize={{ base: "14px", lg: "16px" }}
               fontWeight={"semibold"}
@@ -170,6 +164,7 @@ const DetailsCmp = ({
           py={8}
           px={{ base: 4, md: 8 }}
           templateColumns="repeat(4, 1fr)"
+          gap={4}
         >
           <GridItem display={{ base: "none", md: "grid" }}>
             <Image
@@ -187,24 +182,24 @@ const DetailsCmp = ({
               gap={5}
             >
               {seriesDetails?.genres?.map((genre, idx) => (
-                <ListItem key={idx} fontSize={{ base: "", md: "md" }}>
+                <ListItem key={idx} fontSize={{ base: "14px", lg: "16px" }}>
                   <Text>{genre.name}</Text>
                 </ListItem>
               ))}
             </UnorderedList>
             <Flex flexDir="column" mt={2}>
-              <Text>
+              <Text fontSize={{ base: "14px", lg: "16px" }}>
                 Seasons {`(${seriesDetails?.number_of_seasons || "N/A"})`}
               </Text>
-              <Text>
+              <Text fontSize={{ base: "14px", lg: "16px" }}>
                 All Episodes {`(${seriesDetails?.number_of_episodes || "N/A"})`}
               </Text>
             </Flex>
 
-            <Text fontSize={{ base: "lg", md: "xl" }} pt={4}>
+            <Text fontSize={{ base: "14px", lg: "16px" }} pt={4}>
               Overview
             </Text>
-            <Text fontSize={{ base: "md", md: "lg" }}>
+            <Text fontSize={{ base: "13px", lg: "16px" }}>
               {seriesDetails?.overview}
             </Text>
             <UnorderedList display={"flex"} gap={8} listStyleType="none" pt={4}>
@@ -212,12 +207,14 @@ const DetailsCmp = ({
                 ? seriesDetails.created_by.map((crew, idx) => (
                     <ListItem key={idx}>
                       <Text
-                        fontSize={{ base: "md", md: "lg" }}
+                        fontSize={{ base: "14px", lg: "16px" }}
                         fontWeight={"bold"}
                       >
                         {crew.name}
                       </Text>
-                      <Text fontSize={{ base: "md", md: "lg" }}>Creator</Text>
+                      <Text fontSize={{ base: "14px", lg: "16px" }}>
+                        Creator
+                      </Text>
                     </ListItem>
                   ))
                 : seriesDetails.aggregate_credits &&
@@ -227,12 +224,12 @@ const DetailsCmp = ({
                     .map((crew, idx) => (
                       <ListItem key={idx}>
                         <Text
-                          fontSize={{ base: "", md: "lg" }}
+                          fontSize={{ base: "14px", lg: "16px" }}
                           fontWeight={"bold"}
                         >
                           {crew.name}
                         </Text>
-                        <Text fontSize={{ base: "", md: "lg" }}>
+                        <Text fontSize={{ base: "14px", lg: "16px" }}>
                           {crew.jobs && crew.jobs.length > 0
                             ? crew.jobs[0].job
                             : "Creator"}

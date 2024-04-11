@@ -1,5 +1,5 @@
 import { Movie, Video } from "../../typings";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Skeleton } from "@chakra-ui/react";
 import { baseUrl } from "@/constants/movie";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -63,61 +63,62 @@ const Banner = ({ cineverseOriginals }: Props) => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {slicedMovies.map((movie, idx) => (
-          <SwiperSlide
-            key={idx}
-            className={style.swiperSlide}
-            style={{
-              backgroundImage: `url(${baseUrl}${
-                movie.backdrop_path || movie.poster_path
-              })`,
-              backgroundSize: "cover",
-              minHeight: "60vh",
-              ...(window.innerWidth <= 768 && {
+        <Skeleton isLoaded={!slicedMovies}>
+          {slicedMovies.map((movie, idx) => (
+            <SwiperSlide
+              key={idx}
+              className={style.swiperSlide}
+              style={{
+                backgroundImage: `url(${baseUrl}${
+                  movie.backdrop_path || movie.poster_path
+                })`,
                 backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                width: "100%",
-                backgroundImage: `url(${baseUrl}${movie.poster_path})`,
-              }),
-            }}
-          >
-            <Box
-              pos="absolute"
-              bottom={0}
-              left={0}
-              bg="linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7))"
-              w="100%"
-              h="50%"
-            />
-            <Box
-              display={"flex"}
-              flexDir={"column"}
-              pos="absolute"
-              bottom={0}
-              px={8}
-              pb={4}
-              maxW={{ base: "100%", md: "70%" }}
-              left={0}
+                minHeight: "60vh",
+                ...(window.innerWidth <= 768 && {
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  width: "100%",
+                  backgroundImage: `url(${baseUrl}${movie.poster_path})`,
+                }),
+              }}
             >
-              <Text
-                color={"#fff"}
-                fontWeight={700}
-                fontSize={"2xl"}
-                display={{ base: "none", md: "block" }}
+              <Box
+                pos="absolute"
+                bottom={0}
+                left={0}
+                bg="linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7))"
+                w="100%"
+                h="50%"
+              />
+              <Box
+                display={"flex"}
+                flexDir={"column"}
+                pos="absolute"
+                bottom={0}
+                px={8}
+                pb={4}
+                maxW={{ base: "100%", md: "70%" }}
+                left={0}
               >
-                {movie.original_title || movie.title}
-              </Text>
-              <Text
-                color={"#fff"}
-                fontSize={"lg"}
-                display={{ base: "none", md: "block" }}
-              >
-                {movie.overview &&
-                  movie.overview.slice(0, movie.overview.indexOf(".") + 1)}
-              </Text>
-              <Flex gap={6} mt={3}>
-                {/* <Button
+                <Text
+                  color={"#fff"}
+                  fontWeight={700}
+                  fontSize={"2xl"}
+                  display={{ base: "none", md: "block" }}
+                >
+                  {movie.original_title || movie.title}
+                </Text>
+                <Text
+                  color={"#fff"}
+                  fontSize={"lg"}
+                  display={{ base: "none", md: "block" }}
+                >
+                  {movie.overview &&
+                    movie.overview.slice(0, movie.overview.indexOf(".") + 1)}
+                </Text>
+                <Flex gap={6} mt={3}>
+                  {/* <Button
                   onClick={() => {
                     if (showVideo) {
                       handleClose();
@@ -128,20 +129,21 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 >
                   {showVideo ? "CANCEL" : "PLAY"}
                 </Button> */}
-                <Link
-                  href={`/browse/details/movie/${handleTitle(movie.title)}/${
-                    movie.id
-                  }`}
-                >
-                  <Button>More Info</Button>
-                </Link>
-              </Flex>
-              {/*   {showVideo && (
+                  <Link
+                    href={`/browse/details/movie/${handleTitle(movie.title)}/${
+                      movie.id
+                    }`}
+                  >
+                    <Button>More Info</Button>
+                  </Link>
+                </Flex>
+                {/*   {showVideo && (
                 <YoutubeCmp key={showVideo.key} cineverseVideos={showVideo} />
               )} */}
-            </Box>
-          </SwiperSlide>
-        ))}
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Skeleton>
       </Swiper>
     </Box>
   );
