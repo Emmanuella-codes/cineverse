@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Text, Flex, Avatar, Button, IconButton } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Flex,
+  Avatar,
+  Button,
+  IconButton,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import { MovieCast, MovieCrew } from "../../../../../../../../typings";
 import { cache, useState, useEffect } from "react";
@@ -17,6 +25,7 @@ const CastPage = () => {
   const { id, type } = useParams();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const router = useRouter();
 
@@ -41,7 +50,7 @@ const CastPage = () => {
   const [castDetails, setCastDetails] = useState<MovieCast[] | []>([]);
   const [crewDetails, setCrewDetails] = useState<MovieCrew[] | []>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 15;
+  const resultsPerPage = isLargerThan768 ? 15 : 7;
 
   useEffect(() => {
     const fetchData = async () => {

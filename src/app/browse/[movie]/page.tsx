@@ -1,13 +1,6 @@
 "use client";
 import { useRouter, useParams } from "next/navigation";
-import {
-  Container,
-  Box,
-  Text,
-  Flex,
-  useMediaQuery,
-  Avatar,
-} from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import { Movie, SeriesDetails } from "../../../../typings";
 import Image from "next/image";
 import { useState, useEffect, cache } from "react";
@@ -22,8 +15,6 @@ const SearchResultsPage = () => {
   const { movie } = useParams();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const [isLargerThan478] = useMediaQuery("(min-width: 478px)");
-  const [isLessThan320] = useMediaQuery("(max-width: 320px)");
 
   const searchMovie = cache(async (query: string) => {
     const res = await fetch(

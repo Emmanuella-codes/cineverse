@@ -1,5 +1,5 @@
 "use client";
-import { Container, Box, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { SeriesDetails } from "../../../../typings";
 import useSWR from "swr";
 import * as fetchers from "../../../utils/fetchData";
@@ -80,7 +80,7 @@ const SeriesPage: React.FC<Props> = () => {
         {/* documentary */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
-            Documentary
+            Documentary Shows
           </Text>
           <MovieRow series={docSeries || []} />
         </Box>
@@ -115,7 +115,7 @@ const SeriesPage: React.FC<Props> = () => {
         {/* mystery */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
-            Mystery
+            Mystery Shows
           </Text>
           <MovieRow series={mysterySeries || []} />
         </Box>

@@ -52,11 +52,14 @@ export default function NavbarCmp() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            icon={isOpen ? <CloseIcon color={"#c63b3b"} /> : <HamburgerIcon color={"#c63b3b"} />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
             bg={"gray.300"}
+            bgColor={"#212121"}
+            _focus={{bgColor: "transparent"}}
+            _active={{bgColor: "transparent"}}
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
@@ -91,10 +94,16 @@ export default function NavbarCmp() {
                   fontSize={"1.4rem"}
                 />
               </MenuButton>
-              <MenuList bgColor={""}>
+              <MenuList bgColor={"#212121"}>
                 <MenuDivider />
                 {session && session.user && (
-                  <MenuItem onClick={() => signOut}>Sign Out</MenuItem>
+                  <MenuItem
+                    bgColor={"#212121"}
+                    color={"#fff"}
+                    onClick={() => signOut}
+                  >
+                    Sign Out
+                  </MenuItem>
                 )}
               </MenuList>
             </Menu>

@@ -51,7 +51,7 @@ const Home: React.FC<Props> = () => {
   return (
     <>
       <Banner cineverseOriginals={cineverseOriginals || []} />
-      <Box mt={{ base: 0, md: 14 }}>
+      <Box mt={14}>
         {/* popular movies */}
         <Box>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
@@ -61,42 +61,42 @@ const Home: React.FC<Props> = () => {
         </Box>
 
         {/* trending now */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Trending Now
           </Text>
           <MovieRow movies={trendingNow || []} />
         </Box>
         {/* action movies */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Action Movies
           </Text>
           <MovieRow movies={actionMovies || []} />
         </Box>
         {/* comedy movies */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Comedy Movies
           </Text>
           <MovieRow movies={comedyMovies || []} />
         </Box>
         {/* kid series */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Kids Series
           </Text>
           <MovieRow series={kidsSeries || []} />
         </Box>
         {/* reality series */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Reality Series
           </Text>
           <MovieRow series={realitySeries || []} />
         </Box>
         {/* romance movies */}
-        <Box mt={{ base: 0, md: 14 }}>
+        <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Romance Movies
           </Text>

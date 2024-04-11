@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { cache, useState, useEffect } from "react";
 import {
   MovieCast,
@@ -75,7 +75,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     <Loader />
   ) : (
     <>
-      <Box mt={7} w={{ base: "93%", md: "85%" }}>
+      <Box mt={7} w={{ base: "93%", md: "85%" }} color={"#fff"}>
         {/* Pass the mediaResult to DetailsCmp */}
         {mediaResult && castDetails && (
           <Box>
