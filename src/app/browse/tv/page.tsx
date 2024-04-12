@@ -52,11 +52,28 @@ const SeriesPage: React.FC<Props> = () => {
   );
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    if (
+      trendingSeries !== undefined &&
+      popularSeries !== undefined &&
+      docSeries !== undefined &&
+      actionSeries !== undefined &&
+      realitySeries !== undefined &&
+      kidsSeries !== undefined &&
+      familySeries !== undefined &&
+      mysterySeries !== undefined
+    ) {
       setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timeout);
-  }, []);
+    }
+  }, [
+    trendingSeries,
+    popularSeries,
+    docSeries,
+    actionSeries,
+    realitySeries,
+    kidsSeries,
+    familySeries,
+    mysterySeries,
+  ]);
 
   return loading ? (
     <Loader />
