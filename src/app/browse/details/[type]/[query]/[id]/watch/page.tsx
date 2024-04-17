@@ -15,10 +15,18 @@ interface Props {
 }
 
 const PlayTrailer = ({ cineverseVideo }: Props) => {
-  const { query, id, type } = useParams();
-  const router = useRouter();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const { query, id, type } = useParams();
+  const router = useRouter();
+
+  const fetchVideo = cache(async (type: string, id: string) => {
+    const res = await fetch(
+      `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}`
+    );
+    const data = await res.json();
+    return data.results;
+  });
 
   const backToPrev = () => {
     router.push(`/browse/details/${type}/${query}/${id}`);
@@ -40,28 +48,20 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
     },
   };
 
-  const fetchVideo = cache(async (type: string, id: string) => {
-    const res = await fetch(
-      `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}`
-    );
-    const data = await res.json();
-    return data.results;
-  });
-
   const [videoResults, setVideoResults] = useState<Video[] | []>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetchVideo(type, id);
-      setVideoResults(result);
+      try {
+        const result = await fetchVideo(type, id);
+        setVideoResults(result);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      fetchData();
-    }, 3000);
-
-    return () => clearTimeout(timeout);
+    fetchData();
   }, [fetchVideo, id, type]);
 
   return loading ? (

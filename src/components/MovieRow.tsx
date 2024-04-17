@@ -45,6 +45,7 @@ const MovieRow = ({ movies, series }: Props) => {
       <Swiper
         slidesPerView={2}
         spaceBetween={7}
+        centeredSlides={true}
         navigation={isLargerThan768 ? true : false}
         modules={isLargerThan768 ? [Pagination, Navigation] : [FreeMode]}
         breakpoints={{
@@ -57,8 +58,12 @@ const MovieRow = ({ movies, series }: Props) => {
             spaceBetween: 25,
           },
           1024: {
-            slidesPerView: 6,
+            slidesPerView: 5,
             spaceBetween: 30,
+          },
+          1440: {
+            slidesPerView: 6,
+            spaceBetween: 35,
           },
         }}
         className="mySwiper"

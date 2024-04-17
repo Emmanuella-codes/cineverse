@@ -9,6 +9,7 @@ import NavbarCmp from "@/components/NavbarCmp";
 import { LoginNav } from "@/components/NavbarCmp";
 import { usePathname } from "next/navigation";
 import { register } from "swiper/element/bundle";
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "Cineverse Movie App",
@@ -37,7 +38,7 @@ export default function RootLayout({
         <SessionProvider>
           <ChakraProvider>
             {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
-            {children}
+            <StoreProvider>{children}</StoreProvider>
           </ChakraProvider>
         </SessionProvider>
       </body>

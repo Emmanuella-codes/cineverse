@@ -43,15 +43,16 @@ const SearchResultsPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const results = await searchMovie(movie);
-      setSearchResults(results);
+      try {
+        const results = await searchMovie(movie);
+        setSearchResults(results);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      fetchData();
-    }, 3000);
-    return () => clearTimeout(timeout);
+    fetchData();
   }, [movie, searchMovie]);
 
   return loading ? (
