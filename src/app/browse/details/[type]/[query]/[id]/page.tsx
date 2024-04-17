@@ -52,23 +52,25 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const results = await getMediaDetails(id, type);
-      setMediaResult(results);
+      try {
+        const results = await getMediaDetails(id, type);
+        setMediaResult(results);
 
-      if (results.casts) {
-        setCastDetails(results.casts.cast);
-        setCrewDetails(results.casts.crew);
-      } else {
-        setCastDetails(results.aggregate_credits.cast);
-        setCrewDetails(results.aggregate_credits.crew);
+        if (results.casts) {
+          setCastDetails(results.casts.cast);
+          setCrewDetails(results.casts.crew);
+        } else {
+          setCastDetails(results.aggregate_credits.cast);
+          setCrewDetails(results.aggregate_credits.crew);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     };
 
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      fetchData();
-    }, 3000);
-    return () => clearTimeout(timeout);
+    fetchData();
   }, [getMediaDetails, id, type]);
 
   return loading ? (

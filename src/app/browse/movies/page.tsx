@@ -36,7 +36,7 @@ const MoviesPage: React.FC<Props> = () => {
     fetchers.fetchPopular
   );
   const { data: upcomingMovies } = useSWR(
-    "trendingMovies",
+    "upcomingMovies",
     fetchers.fetchUpcoming
   );
   const { data: topRatedMovies } = useSWR(
@@ -61,11 +61,34 @@ const MoviesPage: React.FC<Props> = () => {
   const { data: horrorMovies } = useSWR("horrorMovies", fetchers.fetchHorror);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    if (
+      trendingMovies &&
+      popularMovies &&
+      upcomingMovies &&
+      topRatedMovies &&
+      actionMovies &&
+      comedyMovies &&
+      romanceMovies &&
+      dramaMovies &&
+      animationMovies &&
+      adventureMovies &&
+      horrorMovies
+    ) {
       setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timeout);
-  }, []);
+    }
+  }, [
+    actionMovies,
+    adventureMovies,
+    animationMovies,
+    comedyMovies,
+    dramaMovies,
+    horrorMovies,
+    popularMovies,
+    romanceMovies,
+    topRatedMovies,
+    trendingMovies,
+    upcomingMovies,
+  ]);
 
   return loading ? (
     <Loader />

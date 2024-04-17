@@ -54,15 +54,16 @@ const CastPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getCast(id, type);
-      setCastDetails(result.cast);
-      setCrewDetails(result.crew);
+      try {
+        const result = await getCast(id, type);
+        setCastDetails(result.cast);
+        setCrewDetails(result.crew);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      fetchData();
-    }, 3000);
-    return () => clearTimeout(timeout);
+    fetchData();
   }, [getCast, id, type]);
 
   const startIdx = (currentPage - 1) * resultsPerPage;

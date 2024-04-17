@@ -53,14 +53,14 @@ const SeriesPage: React.FC<Props> = () => {
 
   useEffect(() => {
     if (
-      trendingSeries !== undefined &&
-      popularSeries !== undefined &&
-      docSeries !== undefined &&
-      actionSeries !== undefined &&
-      realitySeries !== undefined &&
-      kidsSeries !== undefined &&
-      familySeries !== undefined &&
-      mysterySeries !== undefined
+      trendingSeries &&
+      popularSeries &&
+      docSeries &&
+      actionSeries &&
+      realitySeries &&
+      kidsSeries &&
+      familySeries &&
+      mysterySeries
     ) {
       setLoading(false);
     }

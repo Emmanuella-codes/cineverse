@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Skeleton, Text } from "@chakra-ui/react";
 import { Movie } from "../../../typings";
 import useSWR from "swr";
 import * as fetchers from "../../utils/fetchData";
@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 const MovieRow = dynamic(() => import("@/components/MovieRow"));
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const Banner = dynamic(() => import("@/components/BannerCmp"));
-/* const Loader = dynamic(() => import("@/components/Loader")); */
+const Loader = dynamic(() => import("@/components/Loader"));
 
 interface Props {
   cineverseOriginals: Movie[];
@@ -24,10 +24,11 @@ interface Props {
 }
 
 const Home: React.FC<Props> = () => {
-  const { data: cineverseOriginals } = useSWR(
+  const { data: cineverseOriginals, isLoading } = useSWR(
     "cineverseOriginals",
     fetchers.fetchCineverseOriginals
   );
+
   const { data: popularMovies } = useSWR(
     "popularMovies",
     fetchers.fetchPopular
@@ -48,9 +49,19 @@ const Home: React.FC<Props> = () => {
     fetchers.fetchRomance
   );
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
-      <Banner cineverseOriginals={cineverseOriginals || []} />
+      <Skeleton
+        isLoaded={!isLoading}
+        fadeDuration={1}
+        h={"70px"}
+        borderRadius={"7px"}
+      >
+        <Banner cineverseOriginals={cineverseOriginals || []} />
+      </Skeleton>
+
       <Box mt={14}>
         {/* popular movies */}
         <Box>
