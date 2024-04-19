@@ -74,6 +74,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 })`,
                 backgroundSize: "cover",
                 minHeight: "60vh",
+                borderRadius: "10px",
                 ...(window.innerWidth <= 768 && {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",

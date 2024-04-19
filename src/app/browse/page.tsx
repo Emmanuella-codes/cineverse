@@ -24,7 +24,9 @@ interface Props {
 }
 
 const Home: React.FC<Props> = () => {
-  const { data: cineverseOriginals, isLoading } = useSWR(
+  const [loading, setLoading] = useState(true);
+
+  const { data: cineverseOriginals } = useSWR(
     "cineverseOriginals",
     fetchers.fetchCineverseOriginals
   );
@@ -49,18 +51,35 @@ const Home: React.FC<Props> = () => {
     fetchers.fetchRomance
   );
 
-  return isLoading ? (
+  useEffect(() => {
+    if (
+      cineverseOriginals &&
+      trendingNow &&
+      popularMovies &&
+      actionMovies &&
+      realitySeries &&
+      kidsSeries &&
+      comedyMovies &&
+      romanceMovies
+    ) {
+      setLoading(false);
+    }
+  }, [
+    cineverseOriginals,
+    trendingNow,
+    popularMovies,
+    actionMovies,
+    realitySeries,
+    kidsSeries,
+    comedyMovies,
+    romanceMovies,
+  ]);
+
+  return loading ? (
     <Loader />
   ) : (
     <>
-      <Skeleton
-        isLoaded={!isLoading}
-        fadeDuration={1}
-        h={"70px"}
-        borderRadius={"7px"}
-      >
-        <Banner cineverseOriginals={cineverseOriginals || []} />
-      </Skeleton>
+      <Banner cineverseOriginals={cineverseOriginals || []} />
 
       <Box mt={14}>
         {/* popular movies */}

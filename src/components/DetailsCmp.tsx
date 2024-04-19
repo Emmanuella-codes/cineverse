@@ -60,6 +60,7 @@ const DetailsCmp = ({
           px={{ base: 3, md: 8 }}
           templateColumns="repeat(4, 1fr)"
           gap={4}
+          borderRadius={"10px"}
         >
           <GridItem display={{ base: "none", md: "grid" }}>
             <Image
@@ -165,6 +166,7 @@ const DetailsCmp = ({
           px={{ base: 4, md: 8 }}
           templateColumns="repeat(4, 1fr)"
           gap={4}
+          borderRadius={"10px"}
         >
           <GridItem display={{ base: "none", md: "grid" }}>
             <Image
