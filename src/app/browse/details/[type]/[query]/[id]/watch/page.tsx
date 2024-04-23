@@ -7,7 +7,6 @@ import { Video } from "../../../../../../../../typings";
 import { cache, useState, useEffect } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 
-const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
 
 interface Props {
@@ -111,7 +110,6 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
           style={{ height: "67vh", pointerEvents: "auto" }}
         />
       </Box>
-      <FooterCmp />
     </>
   );
 };

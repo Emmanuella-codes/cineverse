@@ -7,7 +7,6 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
 const MovieRow = dynamic(() => import("@/components/MovieRow"));
-const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
 
 interface Props {
@@ -183,7 +182,6 @@ const MoviesPage: React.FC<Props> = () => {
           <MovieRow movies={horrorMovies || []} />
         </Box>
       </Box>
-      <FooterCmp />
     </>
   );
 };

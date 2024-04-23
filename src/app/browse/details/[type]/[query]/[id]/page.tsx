@@ -10,7 +10,6 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
-const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const DetailsCmp = dynamic(() => import("@/components/DetailsCmp"));
 const CastCmp = dynamic(() => import("@/components/CastCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
@@ -91,7 +90,6 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
           </Box>
         )}
       </Box>
-      <FooterCmp />
     </>
   );
 };
