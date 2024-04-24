@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Movie {
-  id: string;
-  title: string;
-}
+import { RootState } from "../store";
+import { Movie } from "../../../typings";
 
 interface MovieState {
   favorites: Movie[];
@@ -22,17 +19,32 @@ const movieSlice = createSlice({
     addToFavorites(state, action: PayloadAction<Movie>) {
       state.favorites.push(action.payload);
     },
-    removeFromFavorites(state, action: PayloadAction<string>) {
-      state.favorites = state.favorites.filter(movie => movie.id === action.payload)
+    removeFromFavorites(state, action: PayloadAction<number>) {
+      state.favorites = state.favorites.filter(
+        (movie) => movie.id === action.payload
+      );
     },
     addToWatchLater(state, action: PayloadAction<Movie>) {
       state.watchLater.push(action.payload);
     },
-    removeFromWatchLater(state, action: PayloadAction<string>) {
-      state.watchLater = state.watchLater.filter(movie => movie.id === action.payload)
+    removeFromWatchLater(state, action: PayloadAction<number>) {
+      state.watchLater = state.watchLater.filter(
+        (movie) => movie.id === action.payload
+      );
     },
   },
 });
 
-export const { addToFavorites, removeFromFavorites, addToWatchLater, removeFromWatchLater } = movieSlice.actions;
-export default movieSlice.reducer
+export const {
+  addToFavorites,
+  removeFromFavorites,
+  addToWatchLater,
+  removeFromWatchLater,
+} = movieSlice.actions;
+export default movieSlice.reducer;
+
+export const isMovieInFavorites = (movieId: number) => (state: RootState) =>
+  state.movies.favorites.some((movies) => movies.id === movieId);
+
+export const isMovieInWatchLater = (movieId: number) => (state: RootState) =>
+  state.movies.watchLater.some((movies) => movies.id === movieId);

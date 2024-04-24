@@ -38,8 +38,6 @@ const SocialButton = ({
     <Button
       bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
       rounded={"full"}
-      w={8}
-      h={8}
       cursor={"pointer"}
       as={"a"}
       href={href}
@@ -59,9 +57,14 @@ const SocialButton = ({
 
 export default function FooterCmp() {
   return (
-    <Box color="gray.300">
-      <Container as={Stack} maxW={"6xl"} py={10} overflow={"hidden"}>
-        <Flex flexDir={{ base: "column", lg: "row" }} alignItems={"center"}>
+    <Box color="gray.300" w={"95%"}>
+      <Container as={Stack} maxW={""} py={10} overflow={"hidden"}>
+        <Flex
+          flexDir={{ base: "column", lg: "row" }}
+          alignItems={"center"}
+          w={"100%"}
+          justifyContent={"space-between"}
+        >
           <Box>
             <Logo />
           </Box>
@@ -69,15 +72,15 @@ export default function FooterCmp() {
             © 2022 Chakra Templates. All rights reserved
           </Text>
         </Flex>
-        <Stack direction={"row"} spacing={6}>
+        <Stack direction={"row"} spacing={6} justifyContent={"center"}>
           <SocialButton label={"Twitter"} href={"#"}>
-            <FaTwitter />
+            <FaTwitter color="#fff" />
           </SocialButton>
           <SocialButton label={"YouTube"} href={"#"}>
-            <FaYoutube />
+            <FaYoutube color="#fff" />
           </SocialButton>
           <SocialButton label={"Instagram"} href={"#"}>
-            <FaInstagram />
+            <FaInstagram color="#fff" />
           </SocialButton>
         </Stack>
       </Container>

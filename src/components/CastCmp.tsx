@@ -97,7 +97,7 @@ const CastCmp = ({ castResult }: Props) => {
             </Box>
           ))}
       </Flex>
-      <Box>
+      <Box mt={4}>
         <Button
           colorScheme="red"
           variant="outline"
