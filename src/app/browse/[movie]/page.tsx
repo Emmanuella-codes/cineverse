@@ -7,7 +7,6 @@ import { useState, useEffect, cache } from "react";
 import { baseUrl } from "@/constants/movie";
 import dynamic from "next/dynamic";
 
-const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
 
 const SearchResultsPage = () => {
@@ -146,7 +145,6 @@ const SearchResultsPage = () => {
           );
         })}
       </Box>
-      <FooterCmp />
     </>
   );
 };

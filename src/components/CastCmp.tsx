@@ -34,13 +34,14 @@ const CastCmp = ({ castResult }: Props) => {
         justifyContent={"space-between"}
         alignItems="center"
         w={"full"}
-        gap={3}
+        gap={{ base: 2, md: 3 }}
       >
         {castResult &&
           slicedCast.map((cast, idx) => (
             <Box
               key={idx}
-              maxW={{ base: "46%", md: "30%", lg: "15%" }}
+              // maxW={{ base: "46%", md: "30%", lg: "15%" }}
+              width={{ base: "45%", md: "20%" }}
               borderWidth="1px"
               rounded="lg"
               shadow="lg"
@@ -59,13 +60,14 @@ const CastCmp = ({ castResult }: Props) => {
                 />
               ) : (
                 <Box
-                  w={{ base: 150, lg: 200 }}
+                  // w={{ base: 150, lg: 200 }}
                   height={{ base: 240, md: 300 }}
                   style={{
                     borderRadius: "5.2px",
                   }}
                   bgColor={"gray.900"}
                   textAlign={"center"}
+                  fontSize={{ base: "13px", md: "16px" }}
                 >
                   NO IMAGE
                 </Box>
@@ -95,8 +97,14 @@ const CastCmp = ({ castResult }: Props) => {
             </Box>
           ))}
       </Flex>
-      <Box>
-        <Button colorScheme="red" variant="outline" onClick={handleClick}>
+      <Box mt={4}>
+        <Button
+          colorScheme="red"
+          variant="outline"
+          onClick={handleClick}
+          fontSize={{ base: "13px", md: "16px" }}
+          p={3}
+        >
           FULL CAST
         </Button>
       </Box>

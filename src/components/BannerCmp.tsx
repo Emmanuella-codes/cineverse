@@ -59,7 +59,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
     <Box mt={12} w={{ base: "97%", md: "90%" }}>
       <Swiper
         pagination={{ type: "progressbar" }}
-        // autoplay={{ delay: 3500, disableOnInteraction: false }}
+        autoplay={{ delay: 3500, disableOnInteraction: false }}
         modules={[Pagination]}
         className="mySwiper"
       >
@@ -74,6 +74,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 })`,
                 backgroundSize: "cover",
                 minHeight: "60vh",
+                borderRadius: "10px",
                 ...(window.innerWidth <= 768 && {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",

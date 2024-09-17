@@ -18,7 +18,6 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
-const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const Loader = dynamic(() => import("@/components/Loader"));
 
 const CastPage = () => {
@@ -231,7 +230,6 @@ const CastPage = () => {
           </Button>
         </Flex>
       </Box>
-      <FooterCmp />
     </>
   );
 };
